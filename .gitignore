@@ -20,3 +20,6 @@ dist/
 # Arquivos de Sistema
 .DS_Store
 Thumbs.db
+
+# Pastas pesadas de bibliotecas locais
+DEPENDENCIAS/
