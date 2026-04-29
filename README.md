@@ -26,7 +26,7 @@ Durante o desenvolvimento, solucionamos diversos desafios reais de regras de neg
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/SEU_USUARIO/conciliador-bancario.git](https://github.com/SEU_USUARIO/conciliador-bancario.git)
+   git clone [https://github.com/jvperetti/conciliador-bancario.git](https://github.com/jvperetti/conciliador-bancario.git)
 Instale as dependências:
 
 Bash
