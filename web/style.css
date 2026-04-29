@@ -1,0 +1,276 @@
+/* Paleta de Cores Grupo Nascimento */
+:root {
+    --cor-fundo: #0a0a14;
+    --cor-azul-escuro: #002244;
+    --cor-azul-hover: #003366;
+    --cor-laranja: #FF6600;
+    --cor-laranja-hover: #ff7f2a;
+    --cor-texto: #ffffff;
+    --cor-card: rgba(30, 30, 48, 0.7);
+    --cor-cyan: #00E5FF;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Canvas Dinâmico no Fundo */
+#bgCanvas {
+    position: fixed; /* Fixa na tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Coloca atrás de tudo */
+    background-color: #00224499; /* Cor de fundo escura, como no exemplo */
+}
+
+.fade-in { animation: fadeIn 0.5s ease-out forwards; }
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* Logo Neon e Textos */
+.logo-neon {
+    filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
+}
+.text-neon-cyan {
+    color: var(--cor-cyan);
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+}
+.text-neon-laranja {
+    color: var(--cor-laranja);
+    text-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background-color: var(--cor-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* File Picker Box */
+.file-box {
+    background: rgba(0, 34, 68, 0.4);
+    border: 1px dashed var(--cor-laranja);
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.file-box:hover {
+    background: #00224499;
+    border-color: var(--cor-cyan);
+}
+
+/* Custom Buttons */
+.btn-nascimento {
+    background-color: var(--cor-laranja);
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
+}
+.btn-nascimento:hover {
+    background-color: var(--cor-laranja-hover);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+    color: white;
+}
+.btn-nascimento:disabled {
+    background-color: #555;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Progress Bar Customizada */
+.progress {
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 12px;
+    border-radius: 6px;
+}
+.progress-bar {
+    background-color: var(--cor-laranja);
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.8);
+}
+
+/* =========================================
+   ESTEIRA DE LOGOS DOS BANCOS
+   ========================================= */
+.bank-logo {
+    height: 24px; /* Tamanho base para a maioria (Ex: Banrisul, BB) */
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(200%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.bank-logo:hover {
+    filter: grayscale(0%) brightness(100%);
+    transform: scale(1.15);
+}
+
+/* AJUSTES CIRÚRGICOS (Se a logo ficar desproporcional, mude o pixel aqui) */
+.logo-caixa { height: 16px; }      /* A Caixa geralmente é mais "gordinha", precisa de menos altura */
+.logo-sicredi { height: 18px; }    /* O Sicredi também costuma ocupar muito espaço */
+.logo-bradesco { height: 32px; }   /* Aumentamos para compensar a margem transparente do PNG */
+.logo-mentore { height: 26px; }    /* Ajuste fino para o Mentore */
+.logo-banrisul { height: 32px; }  
+
+/* =========================================
+   BOTÃO RELÂMPAGO (VOLTAGE)
+   ========================================= */
+.voltage-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.voltage-button button {
+  color: white;
+  background: #0D1127; /* Fundo azul escuro */
+  padding: 1.2rem 2rem;
+  border-radius: 5rem;
+  border: 4px solid #00E5FF; /* Troquei pro Ciano da Nascimento! */
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+  letter-spacing: 0.075em;
+  transition: background 0.3s;
+  text-transform: uppercase;
+}
+
+.voltage-button button:hover {
+  cursor: pointer;
+  background: #0F1C53;
+}
+
+/* O Segredo: Quando passa o mouse no botão, a opacidade do SVG vai pra 1 */
+.voltage-button button:hover + svg, 
+.voltage-button button:hover + svg + .dots {
+  opacity: 1;
+}
+
+.voltage-button svg {
+  display: block;
+  position: absolute;
+  top: -0.75em;
+  left: -0.25em;
+  width: calc(100% + 0.5em);
+  height: calc(100% + 1.5em);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  transition-delay: 0.1s;
+}
+
+.voltage-button svg path {
+  stroke-dasharray: 100;
+  filter: url('#glow');
+}
+
+.voltage-button svg path.line-1 {
+  stroke: #ff9f5e; /* Laranja Nascimento */
+  stroke-dashoffset: 0;
+  animation: spark-1 3s linear infinite;
+}
+
+.voltage-button svg path.line-2 {
+  stroke: #00E5FF; /* Ciano Nascimento */
+  stroke-dashoffset: 500;
+  animation: spark-2 3s linear infinite;
+}
+
+.voltage-button .dots {
+    
+  opacity: 0;
+  transition: opacity 0.3s;
+  transition-delay: 0.4s;
+}
+
+.voltage-button .dots .dot {
+  width: 1rem;
+  height: 1rem;
+  background: white;
+  border-radius: 100%;
+  position: absolute;
+  opacity: 0;
+}
+
+.voltage-button .dots .dot-1 { top: 0; left: 20%; animation: fly-up 3s linear infinite; }
+.voltage-button .dots .dot-2 { top: 0; left: 55%; animation: fly-up 3s linear infinite; animation-delay: 0.5s; }
+.voltage-button .dots .dot-3 { top: 0; left: 80%; animation: fly-up 3s linear infinite; animation-delay: 1s; }
+.voltage-button .dots .dot-4 { bottom: 0; left: 30%; animation: fly-down 3s linear infinite; animation-delay: 2.5s; }
+.voltage-button .dots .dot-5 { bottom: 0; left: 65%; animation: fly-down 3s linear infinite; animation-delay: 1.5s; }
+
+@keyframes spark-1 { to { stroke-dashoffset: -1000; } }
+@keyframes spark-2 { to { stroke-dashoffset: -500; } }
+@keyframes fly-up{
+  0% { opacity:0; transform:translateY(0) scale(0.2); }
+  5% { opacity:1; transform:translateY(-1.5rem) scale(0.4);}
+  10%,100%{ opacity:0;  transform:translateY(-3rem) scale(0.2);}
+}
+@keyframes fly-down {
+  0% { opacity:0; transform:translateY(0) scale(0.2); }
+  5% { opacity:1; transform:translateY(1.5rem) scale(0.4);}
+  10%,100%{ opacity:0;  transform:translateY(3rem) scale(0.2);}
+}
+
+/* =========================================
+   BOTÃO EM CHAMAS (FIRE BUTTON)
+   ========================================= */
+.fire-button-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.fire-button-wrapper button {
+  position: relative;
+  z-index: 2; /* Garante que o texto fique acima do fogo */
+  background: #2a0800; /* Fundo bem escuro, avermelhado */
+  color: white;
+  padding: 1.2rem 2rem;
+  border-radius: 5rem;
+  border: 3px solid #ff4500;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.fire-button-wrapper button:hover {
+  cursor: pointer;
+  background: #3d0c00;
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+}
+
+.fire-canvas {
+  position: absolute;
+  top: -15px; 
+  left: -15px;
+  width: calc(100% + 30px);
+  height: calc(100% + 40px); /* Um pouco mais alto pra labareda subir */
+  pointer-events: none;
+  z-index: 1; /* Fica atrás do botão, mas vaza pelas bordas */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fire-button-wrapper:hover .fire-canvas {
+  opacity: 1;
+}

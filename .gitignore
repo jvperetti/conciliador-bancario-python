@@ -1,0 +1,22 @@
+# Ambientes Virtuais
+venv/
+env/
+
+# Arquivos compilados do Python
+__pycache__/
+*.pyc
+
+# Arquivos do PyInstaller
+build/
+dist/
+*.spec
+
+# Arquivos Financeiros e Sensíveis (MUITO IMPORTANTE)
+*.ofx
+*.OFC
+*.xlsx
+*.csv
+
+# Arquivos de Sistema
+.DS_Store
+Thumbs.db
